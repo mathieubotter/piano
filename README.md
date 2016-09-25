@@ -1,4 +1,6 @@
 # Piano
+[![Build Status](https://travis-ci.org/mathieubotter/piano.svg?branch=master)](https://travis-ci.org/mathieubotter/piano)
+
 __Piano__ is a simple Markdown editor written in ruby.
 
 ## Usage
