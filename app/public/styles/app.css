@@ -1,0 +1,130 @@
+@import url("normalize.css");
+
+html {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+
+a, button {
+  text-decoration: none;
+  color: #282828;
+}
+.btn {
+  background-color: transparent;
+  border: 1px solid #282828;
+  padding: .4em 1em;
+  margin: 0;
+}
+.btn:hover {
+  background-color: #282828;
+  color: #fff;
+}
+.btn i.fa {
+  margin-right: .5em;
+}
+
+p {
+  margin-top: .5em;
+  margin-bottom: 1em;
+  line-height: 2rem;
+  font-size: 1.1rem;
+}
+
+pre {
+  background-color: #f9f9f9;
+  color: #777;
+  padding: 1em;
+}
+
+/* Form */
+label {
+  display: block;
+  margin: 1.25em 0 .5em 0;
+}
+
+textarea {
+  width: 100%;
+  display: block;
+  margin-bottom: 1.25em;
+}
+
+
+/* Grid system */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.toolbar {
+  margin: 2em 0;
+}
+
+
+/* header */
+header {
+  background-color: #f9f9f9;
+  padding: 1em 0;
+}
+
+header h1 {
+  text-transform: uppercase;
+  line-height: 1;
+  float: left;
+  margin: 0;
+}
+header h1 a {
+  color: #282828;
+}
+
+nav {
+  float: right;
+}
+nav ul {
+  list-style: none;
+  float: left;
+  margin: .3em 0;
+}
+nav ul li {
+  display: inline-block;
+  margin-left: 1.5em;
+}
+
+
+/* Notes */
+ul.notes {
+  list-style: none;
+  padding-left: 0;
+}
+ul.notes li {
+  margin-bottom: 2.5rem;
+}
+ul.notes h2 {
+  font-weight: 700;
+  margin: 0;
+}
+ul.notes a {
+  text-decoration: none;
+  color: #5E62C9;
+}
+ul.notes small {
+  font-weight: 400;
+  color: #8E97A4;
+}
+
+
+/* clearfix */
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; }
+*:first-child+html .clearfix { zoom: 1; }

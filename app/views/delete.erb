@@ -1,0 +1,10 @@
+<% if @post %>
+  <p>Are you sure you want to delete the following post:</p>
+  <p><%= @post.content %></p>
+  <form action="/<%= @post.id %>/delete" method="post">
+    <button type="submit" class="btn">Delete</button>
+    <a href="/<%= @post.id %>" class="btn">Cancel</a>
+  </form>
+<% else %>
+  <p>Note not found.</p>
+<% end %>

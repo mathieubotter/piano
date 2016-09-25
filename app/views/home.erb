@@ -1,0 +1,19 @@
+<div class="toolbar">
+  <% if current_user %>
+    <a href="/new" class="btn">Create a new note</a>
+  <% end %>
+</div>
+
+<% if @posts.any? %>
+  <ul class="notes">
+    <% @posts.each do |post| %>
+      <li>
+        <h2><a href="/<%= post.id %>">Note #<%= post.id %></a></h2>
+        <small><%= post.updated_at.strftime("%a %d %b at %H:%m") %></small>
+        <p><%= post.content %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Notes not found.</p>
+<% end %>

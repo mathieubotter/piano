@@ -1,0 +1,9 @@
+*.db
+
+bin/
+.bundle/
+
+config/*.yml
+!config/*.example.yml
+
+.DS_Store

@@ -1,0 +1,14 @@
+<div class="toolbar">
+  <a href="/<%= @post.id %>/delete" class="btn">Delete</a>
+</div>
+
+<% if @post %>
+  <form action="/<%= @post.id %>/edit" method="post">
+    <label for="content">Content</label>
+    <textarea id="content" name="content" rows="6"><%= @post.content %></textarea>
+
+    <button type="submit" class="btn">Submit</button>
+  </form>
+<% else %>
+  <p>Note not found.</p>
+<% end %>

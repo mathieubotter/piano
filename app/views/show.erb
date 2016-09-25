@@ -1,0 +1,10 @@
+<div class="toolbar">
+  <a href="/<%= @post.id %>/edit" class="btn">Edit</a>
+  <a href="/<%= @post.id %>/delete" class="btn">Delete</a>
+</div>
+
+<% if @post %>
+  <p><%= content %></p>
+<% else %>
+  <p>Note not found.</p>
+<% end %>

@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# bootstrap
+#
+# Piano
+
+#
+# Welcome to Piano
+#
+echo ""
+echo "  Piano"
+echo "  a sinatra note taking app."
+echo ""
+
+#
+# Check for Bundler
+#
+if test ! $(which bundle)
+then
+  echo "  x You need to install Bundler:"
+  echo "    gem install bundler"
+  exit
+else
+  echo "  + Bundler found."
+fi
+
+#
+# Install gems
+#
+echo "  + Bootstrapping your Rubies."
+bundle install --binstubs --quiet
+
+#
+# Twitter setup
+#
+if test -f "config/config.yml"
+then
+  echo "  + Twitter config found in config/config.yml"
+else
+  echo ""
+  echo "  + You need to register your Piano instance on Twitter. "
+  echo "  + What's your Twitter client key?"
+  echo "  › \c"
+  read twitter_key
+  echo "  + What's your Twitter client secret?"
+  echo "  › \c"
+  read twitter_secret
+fi
+
+#
+# Generating the system auth token
+#
+auth_token=`date | md5`
+
+# Set up note.yml
+if test -f config/config.yml
+then
+  echo "  + Set up!"
+else
+  cat config/config.example.yml | sed \
+    -e "s/__TWITTER_KEY__/$twitter_key/" \
+    -e "s/__TWITTER_SECRET__/$twitter_secret/" \
+    -e "s/__AUTH_TOKEN__/$auth_token/" \
+    > config/config.yml
+fi
+
+#
+# Startup instructions
+#
+echo ""
+echo "  Good work. We're ready to rock."
+echo "  Run 'rake start' to start the app."
+echo ""
