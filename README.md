@@ -25,6 +25,9 @@ That'll start the server up on [localhost:9393](http://localhost:9393).
 
 ## To Do
 - [ ] Render Markdown text on the main page.
+- [ ] Sort notes by date modified.
+- [ ] Markdown preview when editing note.
+- [ ] Day and night theme?
 
 ## Change Log
 * __0.0.0__ Dev
