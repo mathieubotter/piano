@@ -1,0 +1,9 @@
+<h2>Account</h2>
+
+<% if current_user %>
+<p>
+  Sign in via Twitter as @<%= @user.nickname %>
+</p>
+
+<a href="/account/delete" class="btn">Delete account</a>
+<% end %>

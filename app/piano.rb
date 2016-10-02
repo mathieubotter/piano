@@ -58,11 +58,11 @@ module Piano
         user.uid = env['omniauth.auth']['uid']
         user.provider = env['omniauth.auth']['provider']
         user.name = env['omniauth.auth']['info']['name']
+        user.nickname = env['omniauth.auth']['info']['nickname']
         user.save
       end
 
       session[:user] = user
-
       redirect to("/")
     end
 
@@ -72,20 +72,18 @@ module Piano
 
     get '/logout' do
       session[:user] = nil
-
-      redirect to("/")
+      session.clear
+      redirect to('/')
     end
 
     get '/' do
-      @username = current_user ? session[:user][:name] : nil
-
+      @user = current_user ? session[:user] : nil
       @posts = Post.all(:order => [:id.desc], :limit => 20)
       erb :home
     end
 
     get '/new' do
-      @username = current_user ? session[:user][:name] : nil
-
+      @user = current_user ? session[:user] : nil
       erb :new
     end
 
@@ -102,20 +100,17 @@ module Piano
     end
 
     get %r{^\/([0-9]+)$} do |post_id|
-      @username = current_user ? session[:user][:name] : nil
+      @user = current_user ? session[:user] : nil
 
       post = Post.get post_id
       content = Kramdown::Document.new(post.content)
       @post = post
-
       erb :show, :locals => {:content => content.to_html }
     end
 
     get %r{^\/([0-9]+)/edit$} do |post_id|
-      @username = current_user ? session[:user][:name] : nil
-
+      @user = current_user ? session[:user] : nil
       @post = Post.get post_id
-
       erb :edit
     end
 
@@ -129,18 +124,31 @@ module Piano
     end
 
     get %r{^\/([0-9]+)/delete$} do |post_id|
-      @username = current_user ? session[:user][:name] : nil
-
+      @user = current_user ? session[:user] : nil
       @post = Post.get post_id
-
       erb :delete
     end
 
     post %r{^\/([0-9]+)/delete$} do |post_id|
       post = Post.get post_id
       post.destroy
-
       redirect '/'
+    end
+
+    get '/account' do
+      @user = current_user ? session[:user] : nil
+      erb :account
+    end
+
+    get '/account/delete' do
+      user = User.first(:uid => session[:user][:uid])
+
+      unless user.nil?
+        user.destroy
+        session[:user] = nil
+        session.clear
+        redirect to ('/')
+      end
     end
 
     not_found do

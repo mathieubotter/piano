@@ -18,7 +18,7 @@
       <nav>
         <ul>
           <% if current_user %>
-            <%= @username %>
+            <a href="/account">@<%= @user.nickname %></a>
             <li><a href="/logout" class="btn"><i class="fa fa-sign-out"></i>Logout</a></li>
           <% else %>
             <li><a href="/login" class="btn">Sign in with Twitter</a></li>
