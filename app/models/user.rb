@@ -5,6 +5,7 @@ class User
   property :uid      , Integer
   property :provider , String
   property :name     , String
+  property :nickname , String
 
   has n, :posts
 end
