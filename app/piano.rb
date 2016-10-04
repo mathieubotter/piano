@@ -78,7 +78,7 @@ module Piano
 
     get '/' do
       @user = current_user ? session[:user] : nil
-      @posts = Post.all(:order => [:id.desc], :limit => 20)
+      @posts = Post.all(:user => @user, :order => [:id.desc], :limit => 20)
       erb :home
     end
 
@@ -145,6 +145,7 @@ module Piano
 
       unless user.nil?
         user.destroy
+        user.posts.destroy
         session[:user] = nil
         session.clear
         redirect to ('/')
